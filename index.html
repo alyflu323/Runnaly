@@ -17,13 +17,13 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1
 <div class="app">
   <header class="topbar">
     <div class="brand"><div class="mark">↗</div><span>PACE CLUB</span></div>
-    <div class="pill">YOUR RUNNING PLAN · 8 WEEKS</div>
+    <div class="pill">YOUR RUNNING PLAN · 24 WEEKS</div>
   </header>
   <section class="hero">
     <div class="hero-main">
       <div class="eyebrow">Built, not born.</div>
       <h1>Every run<br>has a purpose.</h1>
-      <p>Tu plan evoluciona contigo. Registra cada sesión, compara el resultado con el objetivo y ajusta los siguientes entrenos según tu progreso real.</p>
+      <p>Objetivo para tu próxima media maratón: correr a un ritmo aproximado de 6:00–6:30 min/km (entre 2:06 y 2:17 en 21,1 km). Plan progresivo de 24 semanas, dos sesiones semanales y ajustes según tus resultados.</p>
       <div class="stats">
         <div class="stat"><span>Entrenos completados</span><strong id="doneStat">0 / 15</strong></div>
         <div class="stat"><span>Km registrados</span><strong id="kmStat">0.0</strong></div>
@@ -31,9 +31,9 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1
     </div>
     <div class="hero-side">
       <div>
-        <div class="eyebrow">Your next level</div>
-        <h2>Consistency<br>beats intensity.</h2>
-        <p id="nextText">Tu próximo entreno te espera. Un paso cada vez.</p>
+        <div class="eyebrow">HALF MARATHON GOAL</div>
+        <h2>6:00–6:30/km<br>starts here.</h2>
+        <p id="nextText">Meta: sostener 6:00–6:30 min/km durante 21,1 km. Lo construiremos por fases, revisando tu progreso y sin forzar.</p>
       </div>
       <div>
         <div class="big-number" id="progressPct">0%</div>
@@ -49,7 +49,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1
   </div>
   <section id="trainingView">
   <div class="section-head">
-    <div><h2>Training calendar</h2><p>8 semanas · 2 sesiones por semana · ritmos y pulsaciones objetivo</p></div>
+    <div><h2>Training calendar</h2><p>24 semanas · 2 sesiones por semana · objetivo: 6:00–6:30/km</p></div>
     <div class="filters">
       <button class="filter active" data-filter="all">Todos</button>
       <button class="filter" data-filter="pending">Pendientes</button>
@@ -106,23 +106,47 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1
 </div>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
-const plan = [
-{week:1,day:"Semana de recuperación",type:"recovery",title:"Recuperación post-media",km:0,blocks:[["Recuperación","Sin running"],["Objetivo","Descansar y valorar molestias"]],note:"Acabas de correr tu primera media maratón. No hace falta correr esta semana."},
-{week:2,day:"Sesión A",type:"easy",title:"Rodaje fácil",km:5,blocks:[["2 km","7:50–8:30/km · 138–150 ppm"],["2 km","7:45–8:20/km · 138–150 ppm"],["1 km","8:00–8:40/km · 125–145 ppm"]]},
-{week:2,day:"Sesión B",type:"long",title:"Rodaje fácil",km:7,blocks:[["7 km","7:45–8:25/km · 138–152 ppm"]]},
-{week:3,day:"Sesión A",type:"interval",title:"Intervalos cortos",km:7,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["6 × 400 m","6:10–6:25/km · recuperación 400 m suave"],["1 km","Vuelta a la calma · 8:00–8:40/km"]]},
-{week:3,day:"Sesión B",type:"long",title:"Rodaje largo",km:8,blocks:[["8 km","7:45–8:25/km · 138–152 ppm"]]},
-{week:4,day:"Sesión A",type:"tempo",title:"Tempo continuo",km:7,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["3 km","6:50–7:05/km · 163–173 ppm"],["2 km","Vuelta a la calma · 7:50–8:40/km"]]},
-{week:4,day:"Sesión B",type:"long",title:"Rodaje largo",km:9,blocks:[["9 km","7:45–8:25/km · 138–152 ppm"]]},
-{week:5,day:"Sesión A",type:"interval",title:"Intervalos medios",km:8,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["5 × 600 m","6:05–6:20/km · recuperación 400 m suave"],["1 km","Vuelta a la calma · 8:00–8:40/km"]]},
-{week:5,day:"Sesión B",type:"long",title:"Rodaje largo",km:10,blocks:[["10 km","7:40–8:20/km · 138–152 ppm"]]},
-{week:6,day:"Sesión A",type:"tempo",title:"Tempo por bloques",km:8,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["2 × 2 km","6:45–7:00/km · 163–173 ppm"],["500 m","Recuperación suave entre bloques"],["1,5 km","Vuelta a la calma · 7:55–8:40/km"]]},
-{week:6,day:"Sesión B",type:"long",title:"Rodaje largo",km:11,blocks:[["11 km","7:40–8:20/km · 138–152 ppm"]]},
-{week:7,day:"Sesión A",type:"interval",title:"Intervalos largos",km:8,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["4 × 800 m","6:05–6:20/km · recuperación 400 m suave"],["1,2 km","Vuelta a la calma · 8:00–8:40/km"]]},
-{week:7,day:"Sesión B",type:"long",title:"Rodaje largo",km:12,blocks:[["12 km","7:40–8:20/km · 138–152 ppm"]]},
-{week:8,day:"Sesión A",type:"tempo",title:"Activación",km:6,blocks:[["2 km","Suaves · 7:50–8:30/km"],["3 km","6:50–7:05/km · 163–173 ppm"],["1 km","Suave · 8:00–8:40/km"]]},
-{week:8,day:"Sesión B",type:"test",title:"Test de 5 km",km:7,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["5 km","Empieza a 6:40–6:50/km y ajusta con control"]]}
-];
+const plan = (() => {
+ // Long-term goal: sub-2h half marathon (~5:41/km). This is a progressive framework, not a race-date plan.
+ // Week 1 is post-race recovery; after that, two runs per week with regular cutback weeks.
+ const weeks = [
+  {a:"recovery",akm:0,at:"Recuperación",ab:[["Objetivo","Descanso; caminar suave si no hay molestias"]],b:"recovery",bkm:0,bt:"Recuperación",bb:[["Objetivo","Sin running; recuperar sueño y piernas"]]},
+  {a:"easy",akm:5,at:"Rodaje fácil + técnica",ab:[["2 km","7:50–8:30/km · 138–150 ppm"],["2 km","7:45–8:20/km · 138–150 ppm"],["1 km","Suave · 125–145 ppm"]],bkm:7},
+  {a:"easy",akm:6,at:"Rodaje fácil + progresivos",ab:[["5 km","7:40–8:25/km · 138–150 ppm"],["4 × 15 s","Progresivos relajados; recuperar caminando"]],bkm:8},
+  {a:"interval",akm:7,at:"Intervalos controlados",ab:[["2 km","Calentamiento · 7:45–8:30/km"],["6 × 400 m","6:10–6:25/km; 400 m muy suaves entre repeticiones"],["1 km","Vuelta a la calma"]],bkm:9},
+  {a:"tempo",akm:7,at:"Tempo por bloques",ab:[["2 km","Calentamiento fácil"],["3 km","6:50–7:05/km · 163–173 ppm como techo orientativo"],["2 km","Vuelta a la calma"]],bkm:10},
+  {a:"interval",akm:8,at:"Intervalos de 600 m",ab:[["2 km","Calentamiento fácil"],["5 × 600 m","6:05–6:20/km; 400 m suaves entre repeticiones"],["1 km","Vuelta a la calma"]],bkm:8,cut:true},
+  {a:"tempo",akm:8,at:"Tempo continuo",ab:[["2 km","Calentamiento fácil"],["4 km","6:45–7:00/km · controlado, sin esprintar"],["2 km","Vuelta a la calma"]],bkm:11},
+  {a:"interval",akm:8,at:"Intervalos de 800 m",ab:[["2 km","Calentamiento fácil"],["4 × 800 m","6:10–6:25/km; 400 m suaves entre repeticiones"],["1.2 km","Vuelta a la calma"]],bkm:12},
+  {a:"tempo",akm:7,at:"Semana de descarga",ab:[["2 km","Calentamiento fácil"],["3 km","Tempo cómodo · 6:45–7:00/km"],["2 km","Vuelta a la calma"]],bkm:9,cut:true},
+  {a:"interval",akm:8,at:"Intervalos de 1 km",ab:[["2 km","Calentamiento fácil"],["4 × 1 km","6:10–6:25/km; 400 m suaves entre repeticiones"],["1.2 km","Vuelta a la calma"]],bkm:13},
+  {a:"tempo",akm:9,at:"Tempo por bloques",ab:[["2 km","Calentamiento fácil"],["2 × 2 km","6:40–6:55/km; 500 m suaves entre bloques"],["2 km","Vuelta a la calma"]],bkm:14},
+  {a:"interval",akm:8,at:"Intervalos cortos",ab:[["2 km","Calentamiento fácil"],["8 × 400 m","6:00–6:15/km; 400 m suaves entre repeticiones"],["1.2 km","Vuelta a la calma"]],bkm:10,cut:true},
+  {a:"tempo",akm:9,at:"Tempo sostenido",ab:[["2 km","Calentamiento fácil"],["5 km","6:35–6:50/km · control respiratorio"],["2 km","Vuelta a la calma"]],bkm:15},
+  {a:"interval",akm:9,at:"Intervalos de 1 km",ab:[["2 km","Calentamiento fácil"],["5 × 1 km","6:00–6:15/km; 400 m suaves entre repeticiones"],["1 km","Vuelta a la calma"]],bkm:16},
+  {a:"tempo",akm:9,at:"Tempo + final progresivo",ab:[["2 km","Calentamiento fácil"],["5 km","6:35–6:50/km · solo si controlado"],["2 km","Vuelta a la calma"]],bkm:12,cut:true},
+  {a:"interval",akm:9,at:"Intervalos de 1.2 km",ab:[["2 km","Calentamiento fácil"],["4 × 1.2 km","5:50–6:05/km; 400 m suaves entre repeticiones"],["1 km","Vuelta a la calma"]],bkm:16},
+  {a:"tempo",akm:10,at:"Tempo por bloques largos",ab:[["2 km","Calentamiento fácil"],["2 × 3 km","6:25–6:40/km; 500 m suaves entre bloques"],["1.5 km","Vuelta a la calma"]],bkm:17},
+  {a:"interval",akm:9,at:"Intervalos de 800 m",ab:[["2 km","Calentamiento fácil"],["5 × 800 m","5:55–6:10/km; 400 m suaves entre repeticiones"],["1 km","Vuelta a la calma"]],bkm:13,cut:true},
+  {a:"tempo",akm:10,at:"Ritmo sostenido",ab:[["2 km","Calentamiento fácil"],["6 km","6:20–6:35/km · no forzar si sube demasiado la FC"],["2 km","Vuelta a la calma"]],bkm:18},
+  {a:"interval",akm:10,at:"Intervalos largos",ab:[["2 km","Calentamiento fácil"],["4 × 1.2 km","5:55–6:10/km; 400 m suaves entre repeticiones"],["1.2 km","Vuelta a la calma"]],bkm:16},
+  {a:"tempo",akm:9,at:"Descarga + tempo",ab:[["2 km","Calentamiento fácil"],["4 km","6:20–6:35/km · controlado"],["3 km","Vuelta a la calma"]],bkm:14,cut:true},
+  {a:"interval",akm:10,at:"Ritmo objetivo por bloques",ab:[["2 km","Calentamiento fácil"],["3 × 1.6 km","5:45–5:55/km; 600 m suaves entre bloques"],["1 km","Vuelta a la calma"]],bkm:18},
+  {a:"tempo",akm:10,at:"Resistencia específica",ab:[["2 km","Calentamiento fácil"],["6 km","6:05–6:20/km · solo si la progresión lo permite"],["2 km","Vuelta a la calma"]],bkm:19},
+  {a:"test",akm:7,at:"Test controlado de 5 km",ab:[["2 km","Calentamiento fácil"],["5 km","Test fuerte pero uniforme; registrar FC y esfuerzo"]],bkm:14,cut:true}
+ ];
+ const plan=[];
+ weeks.forEach((w,idx)=>{
+   const week=idx+1;
+   const recovery=week===1;
+   const aType=w.a;
+   plan.push({week,day:"Sesión A",type:aType,title:w.at,km:w.akm,blocks:w.ab,note:recovery?"Semana de recuperación tras la media maratón.":""});
+   const longKm=w.bkm;
+   const bBlocks=recovery?[["Objetivo","Descanso y recuperación"]]:[[`${longKm} km`,`${week%4===0?"Rodaje cómodo de descarga":"Rodaje largo fácil"} · 7:40–8:25/km como referencia · 138–152 ppm`]];
+   plan.push({week,day:"Sesión B",type:recovery?"recovery":"long",title:recovery?"Recuperación y movilidad":(w.cut?"Rodaje fácil · semana de descarga":`Rodaje largo · ${longKm} km`),km:longKm,blocks:bBlocks,note:w.cut?"Semana de menor carga para asimilar el entrenamiento.":""});
+ });
+ return plan;
+})();
 const KEY="paceclub-running-v1";
 let state=loadState(), currentId=null, screenshotData="", activeFilter="all";
 function loadState(){try{return JSON.parse(localStorage.getItem(KEY))||{logs:{},adjustments:{},adjustmentsByIndex:{}}}catch(e){return {logs:{},adjustments:{},adjustmentsByIndex:{}}}}
@@ -146,22 +170,25 @@ function adjustText(value,type,adj){
  return value.replace(/(\d{1,2}:\d{2})/g,(m)=>paceFmt(Math.max(240,paceSec(m)+adj)));
 }
 function targetPaceForKm(item,kmIndex){
- const easy=485, long=480, recovery=500, tempo=418, interval=435;
+ const adj=0;
  if(item.type==="recovery")return null;
- if(item.type==="easy")return easy;
- if(item.type==="long")return long;
+ if(item.type==="easy")return 490;
+ if(item.type==="long")return 485;
  if(item.type==="tempo"){
-   if(item.week===4) return kmIndex>=2&&kmIndex<5?tempo:490;
-   if(item.week===6) return kmIndex>=2&&kmIndex<6?420:490;
-   if(item.week===8) return kmIndex>=2&&kmIndex<5?tempo:490;
-   return tempo;
+   const week=item.week||1;
+   const target=week<8?415:week<14?405:week<20?395:385;
+   // warm-up/cool-down kilometers are easy; tempo blocks are estimated from the prescribed session.
+   if(kmIndex<2 || kmIndex>=item.km-2)return 490;
+   return target;
  }
  if(item.type==="interval"){
-   // Per-km splits include both faster repetitions and recoveries; use a blended target, not the rep pace.
-   return kmIndex<2?490:interval;
+   const week=item.week||1;
+   const target=week<8?375:week<14?370:week<20?365:355;
+   if(kmIndex<2 || kmIndex>=item.km-1)return 490;
+   return target;
  }
- if(item.type==="test")return kmIndex<2?490:405;
- return recovery;
+ if(item.type==="test")return kmIndex<2?490:390;
+ return 485;
 }
 function splitComparison(item,splitValues,index){
  const adj=effectivePace(item,index), rows=splitValues.map((actual,i)=>({km:i+1,actual,target:targetPaceForKm(item,i)+adj,delta:actual-(targetPaceForKm(item,i)+adj)}));
@@ -382,7 +409,7 @@ document.getElementById("logForm").addEventListener("submit",e=>{
  if(p.type!=="recovery"&&["easy","long","tempo","interval","test"].includes(p.type)){
    const comparable=[...oldLogs,currentLog].slice(-3);
    const splitRows=parsedSplits.length?splitComparison(p,parsedSplits,currentId):[];
-   const expected=({easy:485,long:480,tempo:418,interval:435,test:405}[p.type]||480);
+   const expected=({easy:490,long:485,tempo:(p.week<8?415:p.week<14?405:p.week<20?395:385),interval:(p.week<8?375:p.week<14?370:p.week<20?365:355),test:390}[p.type]||485);
    const meanDelta=splitRows.length?splitRows.reduce((s,r)=>s+r.delta,0)/splitRows.length:pace-expected;
    const allRecent=Object.entries(state.logs).map(([idx,l])=>({index:+idx,...l,plan:plan[+idx]})).filter(l=>l.index!==currentId).sort((a,b)=>a.index-b.index).slice(-2);
    const recentHighLoad=allRecent.filter(l=>(+l.effort||0)>=8 || (l.avgHr&&["easy","long"].includes(l.plan.type)&&l.avgHr>(l.plan.type==="easy"?155:158))).length;
@@ -428,11 +455,16 @@ document.getElementById("importBtn").onclick=()=>document.getElementById("import
 document.getElementById("importFile").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.logs||!d.adjustments)throw Error();state=d;saveState();render();alert("Copia importada correctamente.")}catch(err){alert("El archivo no parece una copia válida de PACE CLUB.")}};r.readAsText(f)});
 document.getElementById("resetBtn").onclick=()=>{if(confirm("¿Seguro que quieres borrar los resultados y ajustes de este dispositivo? Exporta una copia antes si quieres conservarlos.")){state={logs:{},adjustments:{},adjustmentsByIndex:{}};saveState();render()}};
 activeFilter="all";
-document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b.dataset.filter==="all"));
+const initializeCalendar=()=>{
+ const allButton=document.querySelector('.filter[data-filter="all"]');
+ document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b.dataset.filter==="all"));
+ // Run the exact same path as tapping "Todos", so the initial view cannot diverge from the button state.
+ if(allButton) allButton.click(); else render();
+};
 if(document.readyState==="loading"){
- document.addEventListener("DOMContentLoaded",()=>render(),{once:true});
+ document.addEventListener("DOMContentLoaded",initializeCalendar,{once:true});
 }else{
- render();
+ initializeCalendar();
 }
 </script>
 </body>
