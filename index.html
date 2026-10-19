@@ -124,7 +124,7 @@ const plan = [
 {week:8,day:"Sesión B",type:"test",title:"Test de 5 km",km:7,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["5 km","Empieza a 6:40–6:50/km y ajusta con control"]]}
 ];
 const KEY="paceclub-running-v1";
-let state=loadState(), currentId=null, screenshotData="";
+let state=loadState(), currentId=null, screenshotData="", activeFilter="all";
 function loadState(){try{return JSON.parse(localStorage.getItem(KEY))||{logs:{},adjustments:{},adjustmentsByIndex:{}}}catch(e){return {logs:{},adjustments:{},adjustmentsByIndex:{}}}}
 function saveState(){localStorage.setItem(KEY,JSON.stringify(state))}
 function paceSec(str){if(typeof str==="number")return str;let p=String(str||"").trim().split(":");if(p.length===2)return (+p[0])*60+(+p[1]);return Number(str)||0}
@@ -246,7 +246,7 @@ function render(){
  document.getElementById("progressLabel").textContent=done?`${done} sesiones completadas · sigue sumando.`:"Tu plan empieza aquí.";
  const next=plan.findIndex((p,i)=>!state.logs[i]);
  document.getElementById("nextText").textContent=next<0?"¡Plan completado! Revisa tu progreso y prepara el siguiente bloque.":`Siguiente: semana ${plan[next].week} · ${plan[next].title} · ${plan[next].km} km`;
- const filter=document.querySelector(".filter.active")?.dataset.filter||"all";
+ const filter=activeFilter;
  const root=document.getElementById("workouts");root.innerHTML="";
  const weeks=[...new Set(plan.map(p=>p.week))];
  weeks.forEach(week=>{
@@ -305,7 +305,11 @@ function openModal(i){
 function closeModal(){document.getElementById("modalBackdrop").classList.remove("open")}
 document.getElementById("closeModal").onclick=closeModal;document.getElementById("cancelModal").onclick=closeModal;
 document.getElementById("modalBackdrop").addEventListener("click",e=>{if(e.target.id==="modalBackdrop")closeModal()});
-document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()}));
+document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
+ activeFilter=b.dataset.filter||"all";
+ document.querySelectorAll(".filter").forEach(x=>{x.classList.toggle("active",x===b)});
+ render();
+}));
 document.getElementById("splits").addEventListener("input",()=>{
  const parts=document.getElementById("splits").value.split(/[,; ]+/).filter(Boolean);
  const panel=document.getElementById("splitFields"), rows=document.getElementById("kmRows"), analysis=document.getElementById("splitAnalysis");
@@ -423,7 +427,13 @@ document.getElementById("exportBtn").onclick=()=>{const blob=new Blob([JSON.stri
 document.getElementById("importBtn").onclick=()=>document.getElementById("importFile").click();
 document.getElementById("importFile").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.logs||!d.adjustments)throw Error();state=d;saveState();render();alert("Copia importada correctamente.")}catch(err){alert("El archivo no parece una copia válida de PACE CLUB.")}};r.readAsText(f)});
 document.getElementById("resetBtn").onclick=()=>{if(confirm("¿Seguro que quieres borrar los resultados y ajustes de este dispositivo? Exporta una copia antes si quieres conservarlos.")){state={logs:{},adjustments:{},adjustmentsByIndex:{}};saveState();render()}};
-render();
+activeFilter="all";
+document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b.dataset.filter==="all"));
+if(document.readyState==="loading"){
+ document.addEventListener("DOMContentLoaded",()=>render(),{once:true});
+}else{
+ render();
+}
 </script>
 </body>
 </html>
