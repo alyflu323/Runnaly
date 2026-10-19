@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111512">
+<title>PACE CLUB — Running Plan</title>
+<style>
+:root{--bg:#101411;--panel:#191f1b;--panel2:#202822;--line:#303a32;--text:#f2f5ef;--muted:#a4afa5;--lime:#c8ff55;--lime2:#a8e83a;--orange:#ff8759;--red:#ff7777;--radius:20px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#263428 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1080px;margin:auto;padding:22px 18px 60px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.12em;font-size:14px}.mark{display:grid;place-items:center;width:34px;height:34px;background:var(--lime);color:#111;border-radius:11px;font-size:20px}.pill{border:1px solid var(--line);border-radius:999px;padding:7px 11px;color:var(--muted);font-size:12px}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin-bottom:18px}.hero-main,.hero-side,.card{background:linear-gradient(145deg,rgba(32,40,34,.98),rgba(22,27,23,.98));border:1px solid var(--line);border-radius:var(--radius);padding:24px}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);font-weight:800}.hero h1{font-size:clamp(32px,5vw,56px);line-height:.98;letter-spacing:-.055em;margin:12px 0 14px;max-width:600px}.hero p{color:var(--muted);max-width:540px;margin:0}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:24px}.stat{padding:14px;background:#111713;border:1px solid #2b342d;border-radius:15px}.stat span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.stat strong{display:block;font-size:25px;letter-spacing:-.04em;margin-top:4px}.hero-side{display:flex;flex-direction:column;justify-content:space-between;min-height:280px;background:var(--lime);color:#12170e;position:relative;overflow:hidden}.hero-side .eyebrow{color:#3d501e}.hero-side h2{font-size:24px;line-height:1.05;letter-spacing:-.04em;margin:12px 0}.hero-side p{color:#39442c;font-size:13px}.big-number{font-size:76px;line-height:1;font-weight:900;letter-spacing:-.08em;margin-top:20px}.progress{height:7px;border-radius:10px;background:#37432c;overflow:hidden;margin:14px 0 8px}.progress span{height:100%;display:block;background:#111;transition:width .3s}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:28px 2px 13px}.section-head h2{font-size:22px;letter-spacing:-.04em;margin:0}.section-head p{margin:3px 0 0;color:var(--muted);font-size:13px}.filters{display:flex;gap:7px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:transparent;color:var(--muted);padding:8px 12px;border-radius:999px;font-size:12px}.filter.active{background:var(--lime);color:#111;border-color:var(--lime);font-weight:800}.workouts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.workout{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px}.workout.done{border-color:#526a31}.workout-top{display:flex;justify-content:space-between;align-items:start;gap:8px}.tag{font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;padding:5px 8px;border-radius:999px;background:#29352a;color:var(--lime)}.tag.recovery{color:#ffd0bb;background:#3a2a24}.tag.completed{background:#30411e;color:var(--lime)}.workout h3{font-size:18px;letter-spacing:-.03em;margin:0}.meta{font-size:12px;color:var(--muted)}.km{font-size:32px;font-weight:900;letter-spacing:-.06em}.km small{font-size:12px;color:var(--muted);letter-spacing:0;font-weight:600}.blocks{display:grid;gap:7px}.block{display:flex;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:10px;background:#111713;font-size:12px}.block span{color:var(--muted)}.block b{text-align:right;font-weight:700}.btn{border:0;border-radius:12px;background:var(--lime);color:#11170d;font-weight:850;padding:12px 15px;font-size:13px}.btn:hover{background:var(--lime2)}.btn.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}.btn.full{width:100%}.workout .btn{margin-top:auto}.adapt-note{background:#1b241b;border:1px solid #354432;padding:14px;border-radius:14px;color:#cbd5c9;font-size:13px}.adapt-note b{color:var(--lime)}.history-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card h3{margin:0 0 6px;font-size:17px}.card p{color:var(--muted);font-size:13px;margin:0 0 15px}.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px;font-size:13px}.modal-backdrop{position:fixed;inset:0;background:#000b;display:none;align-items:end;justify-content:center;padding:16px;z-index:10}.modal-backdrop.open{display:flex}.modal{width:min(720px,100%);max-height:92vh;overflow:auto;background:#171d18;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 20px 80px #0009}.modal-head{display:flex;justify-content:space-between;gap:12px;align-items:start}.modal h2{margin:0;font-size:24px;letter-spacing:-.04em}.close{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:10px;width:36px;height:36px;font-size:20px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}.field{display:flex;flex-direction:column;gap:6px}.field.fullrow{grid-column:1/-1}.field label{font-size:12px;color:var(--muted);font-weight:700}.field input,.field select,.field textarea{width:100%;background:#0e130f;border:1px solid var(--line);border-radius:11px;padding:11px 12px;color:var(--text);outline:none}.field input:focus,.field textarea:focus{border-color:var(--lime)}.km-rows{display:grid;gap:8px}.km-row{display:grid;grid-template-columns:.6fr 1fr 1fr;gap:8px;align-items:center}.km-row label{font-size:12px;color:var(--muted)}.km-row input{min-width:0;width:100%;background:#0e130f;border:1px solid var(--line);border-radius:9px;padding:9px;color:var(--text)}.subheading{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);font-weight:800;margin:18px 0 8px}.notice{font-size:12px;color:var(--muted);margin-top:10px}.file-preview{font-size:12px;color:var(--muted);margin-top:6px}.footer{margin-top:30px;text-align:center;color:#6f7b70;font-size:11px}.chart{height:100px;display:flex;align-items:end;gap:7px;margin:12px 0 4px}.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}.bar{width:100%;max-width:35px;background:#374638;border-radius:6px 6px 2px 2px;min-height:4px}.bar.good{background:var(--lime)}.bar-wrap small{font-size:9px;color:var(--muted)}.bar-wrap span{font-size:10px}
+@media(max-width:700px){.app{padding:15px 12px 45px}.hero{grid-template-columns:1fr}.hero-main,.hero-side,.card{padding:19px}.hero-side{min-height:210px}.big-number{font-size:58px}.workouts,.history-grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.form-grid{grid-template-columns:1fr 1fr}.km-row{grid-template-columns:.45fr 1fr 1fr}.modal{padding:18px}.workout{padding:15px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="mark">↗</div><span>PACE CLUB</span></div>
+    <div class="pill">YOUR RUNNING PLAN · 8 WEEKS</div>
+  </header>
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">Built, not born.</div>
+      <h1>Every run<br>has a purpose.</h1>
+      <p>Tu plan evoluciona contigo. Registra cada sesión, compara el resultado con el objetivo y ajusta los siguientes entrenos según tu progreso real.</p>
+      <div class="stats">
+        <div class="stat"><span>Entrenos completados</span><strong id="doneStat">0 / 15</strong></div>
+        <div class="stat"><span>Km registrados</span><strong id="kmStat">0.0</strong></div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div>
+        <div class="eyebrow">Your next level</div>
+        <h2>Consistency<br>beats intensity.</h2>
+        <p id="nextText">Tu próximo entreno te espera. Un paso cada vez.</p>
+      </div>
+      <div>
+        <div class="big-number" id="progressPct">0%</div>
+        <div class="progress"><span id="progressBar" style="width:0%"></span></div>
+        <p id="progressLabel">Tu plan empieza aquí.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-head">
+    <div><h2>Training calendar</h2><p>8 semanas · 2 sesiones por semana · ritmos y pulsaciones objetivo</p></div>
+    <div class="filters">
+      <button class="filter active" data-filter="all">Todos</button>
+      <button class="filter" data-filter="pending">Pendientes</button>
+      <button class="filter" data-filter="done">Completados</button>
+    </div>
+  </div>
+  <div id="adaptMessage" class="adapt-note">⚡ <b>Smart pacing:</b> al registrar cada entreno, compara cada split con su objetivo, evalúa esfuerzo y pulsaciones y revisa las últimas sesiones. Ajusta poco a poco los futuros entrenos del mismo tipo y suaviza la próxima sesión de calidad si detecta carga alta.</div>
+  <div id="coachPanel" class="card" style="margin-top:13px"><div class="eyebrow">Coach insight</div><h3 style="margin-top:8px">Tu entrenador está aprendiendo</h3><p>Registra tus sesiones para recibir recomendaciones basadas en ritmo, pulsaciones, esfuerzo y carga reciente.</p></div><div class="workouts" id="workouts" style="margin-top:13px"></div>
+
+  <div class="section-head"><div><h2>Your progress</h2><p>Tu evolución a lo largo del plan</p></div></div>
+  <div class="history-grid">
+    <div class="card"><h3>Ritmo medio por sesión</h3><p>Solo entrenos registrados</p><div class="chart" id="paceChart"></div><div class="meta" id="paceSummary">Aún no hay datos suficientes.</div></div>
+    <div class="card"><h3>Últimos resultados</h3><p>Comparativa con el ritmo objetivo</p><div id="recentResults" class="empty">Cuando registres tu primer entreno, aparecerá aquí.</div></div>
+  </div>
+  <div class="section-head"><div><h2>Data & settings</h2><p>Tu información se guarda en este dispositivo.</p></div></div>
+  <div class="card">
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn secondary" id="exportBtn">Exportar datos</button>
+      <button class="btn secondary" id="importBtn">Importar copia</button>
+      <button class="btn ghost" id="resetBtn">Reiniciar plan</button>
+      <input type="file" id="importFile" accept="application/json" hidden>
+    </div>
+    <p class="notice">MVP privado: no se conecta directamente a Strava ni sincroniza entre dispositivos. Puedes intentar leer una captura mediante OCR en el navegador, corregir los campos detectados o pegar los splits manualmente. Revisa siempre los datos extraídos.</p>
+  </div>
+  <div class="footer">PACE CLUB · TRAIN SMART · STAY CONSISTENT</div>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <div class="modal-head"><div><div class="eyebrow">Session review</div><h2 id="modalTitle">Registrar entreno</h2><p class="meta" id="modalSubtitle"></p></div><button class="close" id="closeModal" aria-label="Cerrar">×</button></div>
+    <form id="logForm">
+      <div class="form-grid">
+        <div class="field"><label for="date">Fecha</label><input id="date" type="date" required></div>
+        <div class="field"><label for="distance">Distancia real (km)</label><input id="distance" type="number" min="0.1" max="100" step="0.01" placeholder="Ej. 7.02" required></div>
+        <div class="field"><label for="duration">Tiempo total (minutos)</label><input id="duration" type="number" min="1" step="0.01" placeholder="Ej. 48.5" required></div>
+        <div class="field"><label for="avgHr">FC media (ppm)</label><input id="avgHr" type="number" min="60" max="230" placeholder="Ej. 148"></div>
+        <div class="field"><label for="maxHr">FC máxima (ppm)</label><input id="maxHr" type="number" min="60" max="230" placeholder="Ej. 171"></div>
+        <div class="field"><label for="effort">Esfuerzo percibido</label><select id="effort"><option value="3">3/10 · Fácil</option><option value="4">4/10 · Cómodo</option><option value="5" selected>5/10 · Moderado</option><option value="6">6/10 · Exigente</option><option value="7">7/10 · Duro</option><option value="8">8/10 · Muy duro</option><option value="9">9/10 · Casi máximo</option><option value="10">10/10 · Máximo</option></select></div>
+        <div class="field fullrow"><label for="splits">Splits por kilómetro (alternativa manual)</label><input id="splits" placeholder="Ej. 7:42, 7:35, 7:28, 7:30, 7:33"><div class="notice">Puedes escribir o pegar los ritmos separados por comas, espacios o saltos de línea. Si la lectura de la captura falla, esta es la forma de corregirlos.</div></div>
+        <div class="field fullrow"><label for="screenshot">Captura de Strava (opcional)</label><input id="screenshot" type="file" accept="image/*"><div class="file-preview" id="filePreview">La captura queda guardada como referencia. Para comparar splits, introduce los ritmos que aparecen en Strava.</div></div>
+        <div class="field fullrow"><label for="notes">Notas (sensaciones, clima, molestias...)</label><textarea id="notes" rows="2" placeholder="¿Cómo te has encontrado?"></textarea></div>
+      </div>
+      <div id="splitFields" hidden><div class="subheading">Splits por km</div><div class="km-rows" id="kmRows"></div><div id="splitAnalysis" class="adapt-note" style="margin-top:10px">Introduce tus ritmos por kilómetro para compararlos.</div></div>
+      <div class="adapt-note" id="previewAdapt">El ajuste sugerido aparecerá al guardar los resultados.</div>
+      <div style="display:flex;gap:9px;margin-top:17px"><button type="submit" class="btn full">Guardar resultado + adaptar plan</button><button type="button" class="btn secondary" id="cancelModal">Cancelar</button></div>
+      <div class="notice">La adaptación es orientativa: la app no sustituye una valoración profesional ni debe usar una sola sesión para hacer cambios grandes. Si tienes dolor, prioriza la recuperación.</div>
+    </form>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script>
+const plan = [
+{week:1,day:"Semana de recuperación",type:"recovery",title:"Recuperación post-media",km:0,blocks:[["Recuperación","Sin running"],["Objetivo","Descansar y valorar molestias"]],note:"Acabas de correr tu primera media maratón. No hace falta correr esta semana."},
+{week:2,day:"Sesión A",type:"easy",title:"Rodaje fácil",km:5,blocks:[["2 km","7:50–8:30/km · 138–150 ppm"],["2 km","7:45–8:20/km · 138–150 ppm"],["1 km","8:00–8:40/km · 125–145 ppm"]]},
+{week:2,day:"Sesión B",type:"long",title:"Rodaje fácil",km:7,blocks:[["7 km","7:45–8:25/km · 138–152 ppm"]]},
+{week:3,day:"Sesión A",type:"interval",title:"Intervalos cortos",km:7,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["6 × 400 m","6:10–6:25/km · recuperación 400 m suave"],["1 km","Vuelta a la calma · 8:00–8:40/km"]]},
+{week:3,day:"Sesión B",type:"long",title:"Rodaje largo",km:8,blocks:[["8 km","7:45–8:25/km · 138–152 ppm"]]},
+{week:4,day:"Sesión A",type:"tempo",title:"Tempo continuo",km:7,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["3 km","6:50–7:05/km · 163–173 ppm"],["2 km","Vuelta a la calma · 7:50–8:40/km"]]},
+{week:4,day:"Sesión B",type:"long",title:"Rodaje largo",km:9,blocks:[["9 km","7:45–8:25/km · 138–152 ppm"]]},
+{week:5,day:"Sesión A",type:"interval",title:"Intervalos medios",km:8,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["5 × 600 m","6:05–6:20/km · recuperación 400 m suave"],["1 km","Vuelta a la calma · 8:00–8:40/km"]]},
+{week:5,day:"Sesión B",type:"long",title:"Rodaje largo",km:10,blocks:[["10 km","7:40–8:20/km · 138–152 ppm"]]},
+{week:6,day:"Sesión A",type:"tempo",title:"Tempo por bloques",km:8,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["2 × 2 km","6:45–7:00/km · 163–173 ppm"],["500 m","Recuperación suave entre bloques"],["1,5 km","Vuelta a la calma · 7:55–8:40/km"]]},
+{week:6,day:"Sesión B",type:"long",title:"Rodaje largo",km:11,blocks:[["11 km","7:40–8:20/km · 138–152 ppm"]]},
+{week:7,day:"Sesión A",type:"interval",title:"Intervalos largos",km:8,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["4 × 800 m","6:05–6:20/km · recuperación 400 m suave"],["1,2 km","Vuelta a la calma · 8:00–8:40/km"]]},
+{week:7,day:"Sesión B",type:"long",title:"Rodaje largo",km:12,blocks:[["12 km","7:40–8:20/km · 138–152 ppm"]]},
+{week:8,day:"Sesión A",type:"tempo",title:"Activación",km:6,blocks:[["2 km","Suaves · 7:50–8:30/km"],["3 km","6:50–7:05/km · 163–173 ppm"],["1 km","Suave · 8:00–8:40/km"]]},
+{week:8,day:"Sesión B",type:"test",title:"Test de 5 km",km:7,blocks:[["2 km","Calentamiento · 7:45–8:30/km"],["5 km","Empieza a 6:40–6:50/km y ajusta con control"]]}
+];
+const KEY="paceclub-running-v1";
+let state=loadState(), currentId=null, screenshotData="";
+function loadState(){try{return JSON.parse(localStorage.getItem(KEY))||{logs:{},adjustments:{},adjustmentsByIndex:{}}}catch(e){return {logs:{},adjustments:{},adjustmentsByIndex:{}}}}
+function saveState(){localStorage.setItem(KEY,JSON.stringify(state))}
+function paceSec(str){if(typeof str==="number")return str;let p=String(str||"").trim().split(":");if(p.length===2)return (+p[0])*60+(+p[1]);return Number(str)||0}
+function paceFmt(sec){if(!isFinite(sec)||sec<=0)return "—";return Math.floor(sec/60)+":"+String(Math.round(sec%60)).padStart(2,"0")}
+function typeName(t){return ({recovery:"Recovery",easy:"Easy run",long:"Long run",interval:"Intervals",tempo:"Tempo",test:"Benchmark"})[t]||t}
+function effectivePace(item,index){return Number(state.adjustmentsByIndex?.[index]||0)}
+function effectivePace(item,index){return Number(state.adjustmentsByIndex?.[index]||0)}
+function adjustedBlocks(item,index){
+ const adj=effectivePace(item,index);
+ if(!adj)return item.blocks;
+ return item.blocks.map(([label,value])=>{
+   const lower=String(label).toLowerCase();
+   const isRecovery=/calentamiento|vuelta a la calma|suave|recuperaci[oó]n|recovery|descanso/.test(lower);
+   if(isRecovery || !["easy","long","tempo","interval","test"].includes(item.type))return [label,value];
+   return [label,adjustText(value,item.type,adj)];
+ });
+}
+function adjustText(value,type,adj){
+ return value.replace(/(\d{1,2}:\d{2})/g,(m)=>paceFmt(Math.max(240,paceSec(m)+adj)));
+}
+function targetPaceForKm(item,kmIndex){
+ const easy=485, long=480, recovery=500, tempo=418, interval=435;
+ if(item.type==="recovery")return null;
+ if(item.type==="easy")return easy;
+ if(item.type==="long")return long;
+ if(item.type==="tempo"){
+   if(item.week===4) return kmIndex>=2&&kmIndex<5?tempo:490;
+   if(item.week===6) return kmIndex>=2&&kmIndex<6?420:490;
+   if(item.week===8) return kmIndex>=2&&kmIndex<5?tempo:490;
+   return tempo;
+ }
+ if(item.type==="interval"){
+   // Per-km splits include both faster repetitions and recoveries; use a blended target, not the rep pace.
+   return kmIndex<2?490:interval;
+ }
+ if(item.type==="test")return kmIndex<2?490:405;
+ return recovery;
+}
+function splitComparison(item,splitValues,index){
+ const adj=effectivePace(item,index), rows=splitValues.map((actual,i)=>({km:i+1,actual,target:targetPaceForKm(item,i)+adj,delta:actual-(targetPaceForKm(item,i)+adj)}));
+ return rows;
+}
+function comparisonHTML(item,log,index){
+ const vals=log.splitValues||String(log.splits||"").split(/[,;\\s]+/).filter(Boolean).map(paceSec).filter(v=>v>0);
+ if(!vals.length)return "";
+ const rows=splitComparison(item,vals,index);
+ return `<div class="adapt-note"><b>Comparación split a split</b><div style="display:grid;grid-template-columns:.5fr 1fr 1fr 1fr;gap:6px;margin-top:8px;font-size:11px;color:var(--muted)"><span>Km</span><span>Real</span><span>Objetivo</span><span>Diferencia</span>${rows.map(r=>`<span>${r.km}</span><b style="color:var(--text)">${paceFmt(r.actual)}</b><span>${paceFmt(r.target)}</span><b style="color:${Math.abs(r.delta)<=10?'var(--lime)':r.delta>0?'var(--orange)':'var(--lime)'}">${r.delta>0?'+':''}${r.delta}s</b>`).join("")}</div></div>`;
+}
+function getCoachInsight(){
+ const logs=Object.entries(state.logs).map(([i,l])=>({index:+i,...l,plan:plan[+i]})).sort((a,b)=>a.index-b.index);
+ if(!logs.length)return {title:"Tu entrenador está aprendiendo",body:"Registra tu primera sesión. Compararemos los splits reales con los objetivos por kilómetro y usaremos esfuerzo y pulsaciones para adaptar el plan.",status:"START"};
+ const recent=logs.slice(-3);
+ const highEffort=recent.filter(l=>(+l.effort||0)>=8).length;
+ const easyHighHR=recent.filter(l=>["easy","long"].includes(l.plan.type)&&l.avgHr&&l.avgHr>(l.plan.type==="easy"?155:158)).length;
+ const last=logs[logs.length-1];
+ const future=plan.findIndex((w,i)=>i>last.index&&!state.logs[i]);
+ let title="Carga bien controlada", body="De momento mantenemos el plan. Una sesión aislada no basta para subir el ritmo: buscamos mejoras repetidas con esfuerzo controlado.",status="STABLE";
+ if(highEffort>=2||easyHighHR>=2){
+   title="Prioridad: recuperación";
+   body="Hay señales de carga alta en tus últimas sesiones. Mantén o suaviza el siguiente entrenamiento; si notas dolor, fatiga inusual o mal descanso, cambia la sesión por descanso o actividad suave.";
+   status="RECOVERY";
+ } else {
+   const comparable=logs.filter(l=>l.plan.type===last.plan.type).slice(-3);
+   const deltas=comparable.map(l=>{
+     const splits=l.splitValues||[];
+     if(splits.length)return splits.reduce((sum,v,j)=>sum+(v-(targetPaceForKm(l.plan,j)+(Number(state.adjustmentsByIndex?.[l.index]||0))),0),0)/splits.length;
+     const expected=({easy:485,long:480,tempo:418,interval:435,test:405})[l.plan.type]||480;
+     return l.paceSec-expected;
+   });
+   if(comparable.length>=2 && deltas.every(d=>d<-10) && recent.every(l=>(+l.effort||5)<=6)){
+     title="Señal positiva de progreso";
+     body="Tus últimas sesiones comparables están saliendo por delante del objetivo con esfuerzo moderado. Podemos afinar el ritmo de ese tipo de sesión en pasos pequeños, sin acelerar los rodajes de recuperación.";
+     status="PROGRESS";
+   } else if((+last.effort||0)>=7){
+     title="Observa la recuperación";
+     body="La última sesión ha sido exigente. No aumentaremos la intensidad en la siguiente automáticamente; mantendremos el objetivo hasta comprobar cómo respondes en otra sesión.";
+     status="CAUTION";
+   }
+ }
+ if(future>=0)body+=` Próxima sesión: semana ${plan[future].week}, ${plan[future].title} (${plan[future].km} km).`;
+ return {title,body,status};
+}
+function renderCoach(){
+ const c=getCoachInsight(), el=document.getElementById("coachPanel");
+ const color=c.status==="RECOVERY"||c.status==="CAUTION"?"var(--orange)":c.status==="PROGRESS"?"var(--lime)":"var(--text)";
+ el.innerHTML=`<div class="eyebrow">Coach insight · ${c.status==="PROGRESS"?"Progreso":c.status==="RECOVERY"?"Recuperación":c.status==="CAUTION"?"Carga":c.status==="START"?"Aprendizaje":"Estable"}</div><h3 style="margin-top:8px;color:${color}">${c.title}</h3><p style="margin-bottom:0">${c.body}</p>`;
+}
+function render(){
+ renderCoach();
+ const done=Object.keys(state.logs).length, total=plan.length, km=Object.values(state.logs).reduce((s,l)=>s+(+l.distance||0),0);
+ document.getElementById("doneStat").textContent=`${done} / ${total}`;
+ document.getElementById("kmStat").textContent=km.toFixed(1);
+ document.getElementById("progressPct").textContent=Math.round(done/total*100)+"%";
+ document.getElementById("progressBar").style.width=(done/total*100)+"%";
+ document.getElementById("progressLabel").textContent=done?`${done} sesiones completadas · sigue sumando.`:"Tu plan empieza aquí.";
+ const next=plan.findIndex((p,i)=>!state.logs[i]);
+ document.getElementById("nextText").textContent=next<0?"¡Plan completado! Revisa tu progreso y prepara el siguiente bloque.":`Siguiente: semana ${plan[next].week} · ${plan[next].title} · ${plan[next].km} km`;
+ const filter=document.querySelector(".filter.active")?.dataset.filter||"all";
+ const root=document.getElementById("workouts");root.innerHTML="";
+ plan.forEach((p,i)=>{const log=state.logs[i];if(filter==="done"&&!log||filter==="pending"&&log)return;
+ let blocks=adjustedBlocks(p,i);
+ const card=document.createElement("article");card.className="workout"+(log?" done":"");
+ card.innerHTML=`<div class="workout-top"><div><div class="meta">WEEK ${p.week} · ${p.day}</div><h3 style="margin-top:5px">${p.title}</h3></div><span class="tag ${p.type==="recovery"?"recovery":log?"completed":""}">${log?"Completado":typeName(p.type)}</span></div>
+ <div style="display:flex;align-items:baseline;justify-content:space-between"><div class="km">${p.km}<small> km planificados</small></div>${log?`<div style="text-align:right"><div style="font-weight:850;color:var(--lime)">${paceFmt(log.paceSec)}/km</div><div class="meta">ritmo real</div></div>`:""}</div>
+ <div class="blocks">${blocks.map(b=>`<div class="block"><span>${b[0]}</span><b>${b[1]}</b></div>`).join("")}</div>
+ ${log?`<div class="adapt-note"><b>Resultado guardado</b><br>${log.distance} km · ${log.duration} min · FC media ${log.avgHr||"—"} ppm<br><span style="color:var(--muted)">${log.adjustNote||"Sin ajuste de ritmo."}</span></div>${comparisonHTML(p,log,i)}`:""}
+ <button class="btn ${log?"secondary":""}" data-log="${i}">${log?"Ver / editar resultado":p.type==="recovery"?"Registrar recuperación":"Registrar entreno"}</button>`;
+ root.appendChild(card);
+ });
+ root.querySelectorAll("[data-log]").forEach(b=>b.addEventListener("click",()=>openModal(+b.dataset.log)));
+ renderCharts();
+}
+function renderCharts(){
+ const logs=Object.entries(state.logs).map(([i,l])=>({...l,index:+i})).sort((a,b)=>a.index-b.index);
+ const chart=document.getElementById("paceChart");
+ if(!logs.length){chart.innerHTML="";document.getElementById("paceSummary").textContent="Aún no hay datos suficientes.";document.getElementById("recentResults").className="empty";document.getElementById("recentResults").textContent="Cuando registres tu primer entreno, aparecerá aquí.";return}
+ const vals=logs.map(l=>l.paceSec),min=Math.min(...vals),max=Math.max(...vals);
+ chart.innerHTML=logs.slice(-8).map(l=>{let h=max===min?50:25+(max-l.paceSec)/(max-min)*65;return `<div class="bar-wrap"><span>${paceFmt(l.paceSec)}</span><div class="bar ${l.paceSec<=vals[0]?"good":""}" style="height:${h}px"></div><small>S${plan[l.index].week}</small></div>`}).join("");
+ document.getElementById("paceSummary").textContent=`Último ritmo: ${paceFmt(logs[logs.length-1].paceSec)}/km · media de sesiones: ${paceFmt(vals.reduce((a,b)=>a+b,0)/vals.length)}/km.`;
+ document.getElementById("recentResults").className="";
+ document.getElementById("recentResults").innerHTML=logs.slice(-3).reverse().map(l=>`<div style="padding:9px 0;border-bottom:1px solid var(--line)"><div style="display:flex;justify-content:space-between;gap:8px"><b>${plan[l.index].title}</b><b style="color:var(--lime)">${paceFmt(l.paceSec)}/km</b></div><div class="meta">${l.distance} km · ${l.duration} min · FC ${l.avgHr||"—"} ppm</div><div class="meta">${l.adjustNote||""}</div></div>`).join("");
+}
+function openModal(i){
+ currentId=i;const p=plan[i],log=state.logs[i]||{};
+ document.getElementById("modalTitle").textContent=p.title;
+ document.getElementById("modalSubtitle").textContent=`Semana ${p.week} · ${p.km} km planificados`;
+ document.getElementById("date").value=log.date||new Date().toISOString().slice(0,10);
+ document.getElementById("distance").value=log.distance??(p.km||"");
+ document.getElementById("duration").value=log.duration??"";
+ document.getElementById("avgHr").value=log.avgHr||"";
+ document.getElementById("maxHr").value=log.maxHr||"";
+ document.getElementById("effort").value=log.effort||"5";
+ document.getElementById("splits").value=log.splits||"";
+ document.getElementById("notes").value=log.notes||"";
+ document.getElementById("screenshot").value="";screenshotData=log.screenshot||"";
+ document.getElementById("filePreview").textContent=screenshotData?"Captura guardada anteriormente. Al volver a guardar, puedes seleccionar otra.":"La captura queda guardada como referencia. Para comparar splits, introduce los ritmos que aparecen en Strava.";
+ document.getElementById("splitFields").hidden=true;
+ document.getElementById("previewAdapt").textContent="Al guardar, cada split se comparará con el objetivo de ese kilómetro. Los ajustes afectarán solo a entrenos futuros y serán conservadores.";
+ document.getElementById("modalBackdrop").classList.add("open");
+}
+function closeModal(){document.getElementById("modalBackdrop").classList.remove("open")}
+document.getElementById("closeModal").onclick=closeModal;document.getElementById("cancelModal").onclick=closeModal;
+document.getElementById("modalBackdrop").addEventListener("click",e=>{if(e.target.id==="modalBackdrop")closeModal()});
+document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()}));
+document.getElementById("splits").addEventListener("input",()=>{
+ const parts=document.getElementById("splits").value.split(/[,; ]+/).filter(Boolean);
+ const panel=document.getElementById("splitFields"), rows=document.getElementById("kmRows"), analysis=document.getElementById("splitAnalysis");
+ if(!parts.length){panel.hidden=true;return}
+ panel.hidden=false;
+ rows.innerHTML=parts.map((p,i)=>`<div class="km-row"><label>Km ${i+1}</label><input aria-label="Ritmo km ${i+1}" value="${p}" data-split="${i}" placeholder="7:30"><input aria-label="FC km ${i+1}" data-hr="${i}" placeholder="FC ppm" type="number"></div>`).join("");
+ const values=parts.map(paceSec).filter(v=>v>0);
+ if(values.length){
+   const avg=values.reduce((a,b)=>a+b,0)/values.length;
+   const spread=Math.max(...values)-Math.min(...values);
+   analysis.innerHTML=`<b>Splits detectados: ${values.length}</b><br>Ritmo medio de los splits introducidos: ${paceFmt(avg)}/km. ${spread<20?"Ritmo bastante constante.":spread<45?"Hay cierta variación entre kilómetros.":"Variación alta entre kilómetros: revisa si empezaste demasiado rápido o hubo cuestas/paradas."}<br><span style="color:var(--muted)">Introduce los kilómetros completos para que la media sea representativa.</span>`;
+ }
+});
+document.getElementById("screenshot").addEventListener("change",e=>{
+ const f=e.target.files[0];if(!f)return;
+ if(f.size>2.5*1024*1024){alert("La imagen pesa más de 2,5 MB. Elige una captura más pequeña.");e.target.value="";return}
+ const reader=new FileReader();reader.onload=()=>{
+   screenshotData=reader.result;
+   document.getElementById("filePreview").textContent=`Captura seleccionada: ${f.name}. Revisa los datos detectados antes de guardarlos.`;
+   const img=document.getElementById("screenshotPreview");img.src=reader.result;img.style.display="block";
+   document.getElementById("ocrStatus").textContent="Captura lista. Pulsa «Leer captura automáticamente» para intentar extraer los datos.";
+ };reader.readAsDataURL(f)
+});
+document.getElementById("ocrBtn").addEventListener("click",async()=>{
+ const status=document.getElementById("ocrStatus"), file=document.getElementById("screenshot").files[0];
+ if(!file && !screenshotData){status.textContent="Primero sube una captura de Strava.";return}
+ if(!window.Tesseract){status.textContent="No se ha podido cargar el reconocimiento de texto. Comprueba la conexión a internet o introduce los datos manualmente.";return}
+ const source=file||screenshotData;
+ const btn=document.getElementById("ocrBtn");btn.disabled=true;btn.textContent="Leyendo captura…";
+ try{
+   status.textContent="Reconociendo texto en la imagen…";
+   const result=await Tesseract.recognize(source,"eng",{logger:m=>{if(m.status==="recognizing text")status.textContent=`Reconociendo texto… ${Math.round((m.progress||0)*100)}%`}});
+   const raw=result.data.text||"";
+   const normalized=raw.replace(/[，;]/g,",").replace(/[|]/g," ").replace(/\s+/g," ");
+   // Parse common Strava labels; OCR suggestions are always editable and user-confirmed.
+   const distMatch=normalized.match(/(\d+(?:[.,]\d+)?)\s*(?:km|kilometers?|kilometres?)\b/i);
+   const timeMatches=[...normalized.matchAll(/\b(\d{1,2}):(\d{2}):(\d{2})\b/g)];
+   const shortTimes=[...normalized.matchAll(/\b(\d{1,2}):(\d{2})\b/g)];
+   let totalSeconds=0;
+   if(timeMatches.length) totalSeconds=+timeMatches[0][1]*3600 + +timeMatches[0][2]*60 + +timeMatches[0][3];
+   else if(shortTimes.length){
+     // Prefer a duration-like value labelled time/elapsed; otherwise use the first plausible mm:ss.
+     const timeLabel=normalized.match(/(?:time|moving time|elapsed time|tiempo|tiempo en movimiento)[^\d]{0,12}(\d{1,2}):(\d{2})/i);
+     if(timeLabel)totalSeconds=+timeLabel[1]*60 + +timeLabel[2];
+   }
+   const hrMatch=normalized.match(/(?:avg(?:erage)?\s*(?:hr|heart rate)|heart rate|fc media|frecuencia cardiaca media)[^\d]{0,15}(\d{2,3})\s*(?:bpm|ppm)?/i);
+   const splitCandidates=[...normalized.matchAll(/(?:^|\s)(\d{1,2}):(\d{2})(?:\s|$)/g)].map(m=>`${m[1]}:${m[2]}`);
+   if(distMatch)document.getElementById("distance").value=distMatch[1].replace(",",".");
+   if(totalSeconds>0)document.getElementById("duration").value=(totalSeconds/60).toFixed(2);
+   if(hrMatch)document.getElementById("avgHr").value=hrMatch[1];
+   // Do not blindly fill splits with arbitrary time labels; use the OCR candidate list only when several values are detected.
+   if(splitCandidates.length>=3)document.getElementById("splits").value=splitCandidates.join(", ");
+   if(splitCandidates.length>=3)document.getElementById("splits").dispatchEvent(new Event("input"));
+   status.textContent=`Lectura terminada. Detectado: ${distMatch?"distancia, ":""}${totalSeconds?"tiempo, ":""}${hrMatch?"FC media, ":""}${splitCandidates.length>=3?"posibles splits":""}. Revisa y corrige los campos antes de guardar.`;
+   document.getElementById("filePreview").textContent="OCR completado. La imagen se mantiene como referencia.";
+   if(!distMatch&&!totalSeconds&&!hrMatch&&splitCandidates.length<3)status.textContent="No se han reconocido campos con suficiente confianza. Prueba una captura más nítida o introduce los datos manualmente.";
+ }catch(err){status.textContent="No se ha podido leer esta captura. Puedes introducir los datos manualmente en los campos."}
+ finally{btn.disabled=false;btn.textContent="Leer captura automáticamente"}
+});
+document.getElementById("logForm").addEventListener("submit",e=>{
+ e.preventDefault();const p=plan[currentId],distance=+document.getElementById("distance").value,duration=+document.getElementById("duration").value;
+ if(!distance||!duration)return;
+ const pace=duration*60/distance,old=state.logs[currentId];
+ const splits=document.getElementById("splits").value.trim();
+ const avgHr=+document.getElementById("avgHr").value||null,effort=+document.getElementById("effort").value;
+ let adjustNote="Sesión registrada. Los splits se compararán con los objetivos por kilómetro.";
+ const parsedSplits=splits.split(/[,;\\s]+/).filter(Boolean).map(paceSec).filter(v=>v>0);
+ const oldLogs=Object.entries(state.logs).filter(([idx,l])=>+idx!==currentId && plan[+idx].type===p.type).map(([,l])=>l);
+ const currentLog={date:document.getElementById("date").value,distance,duration,paceSec:pace,avgHr,maxHr:+document.getElementById("maxHr").value||null,effort,splits,splitValues:parsedSplits,notes:document.getElementById("notes").value,screenshot:screenshotData};
+ if(p.type!=="recovery"&&["easy","long","tempo","interval","test"].includes(p.type)){
+   const comparable=[...oldLogs,currentLog].slice(-3);
+   const splitRows=parsedSplits.length?splitComparison(p,parsedSplits,currentId):[];
+   const expected=({easy:485,long:480,tempo:418,interval:435,test:405}[p.type]||480);
+   const meanDelta=splitRows.length?splitRows.reduce((s,r)=>s+r.delta,0)/splitRows.length:pace-expected;
+   const allRecent=Object.entries(state.logs).map(([idx,l])=>({index:+idx,...l,plan:plan[+idx]})).filter(l=>l.index!==currentId).sort((a,b)=>a.index-b.index).slice(-2);
+   const recentHighLoad=allRecent.filter(l=>(+l.effort||0)>=8 || (l.avgHr&&["easy","long"].includes(l.plan.type)&&l.avgHr>(l.plan.type==="easy"?155:158))).length;
+   const highHR=avgHr && ((p.type==="easy"&&avgHr>155)||(p.type==="long"&&avgHr>158));
+   const hard=effort>=8 || highHR || recentHighLoad>=2;
+   let adjustment=Number(state.adjustmentsByIndex?.[currentId]||0);
+   if(hard){
+     adjustment=Math.min(20,adjustment+5);
+     adjustNote="Señal de carga alta (esfuerzo, pulsaciones o sesiones recientes): los próximos entrenos comparables se suavizan 5 s/km. Si hay dolor o fatiga inusual, prioriza descanso.";
+   } else if(comparable.length>=2 && meanDelta < -12 && effort<=6 && !highHR){
+     adjustment=Math.max(-10,adjustment-5);
+     adjustNote="Tendencia positiva en sesiones comparables con esfuerzo controlado: los siguientes entrenos de este tipo se aceleran 5 s/km, con un límite acumulado de 10 s/km.";
+   } else if(comparable.length>=2 && meanDelta > 20 && effort>=7){
+     adjustment=Math.min(20,adjustment+5);
+     adjustNote="Ritmo por encima del objetivo con esfuerzo alto: los siguientes entrenos de este tipo se suavizan 5 s/km.";
+   } else {
+     adjustNote=comparable.length<2?"Primera referencia de este tipo guardada. Mantenemos el plan hasta confirmar una tendencia.":"Rendimiento estable o señales mixtas: mantenemos los objetivos.";
+   }
+   if(!state.adjustmentsByIndex)state.adjustmentsByIndex={};
+   for(let future=currentId+1;future<plan.length;future++){
+     if(plan[future].type===p.type) state.adjustmentsByIndex[future]=adjustment;
+   }
+   // When recent load is high, also soften the next upcoming quality session by one small step.
+   if(recentHighLoad>=2 || effort>=9){
+     for(let future=currentId+1;future<plan.length;future++){
+       if(["interval","tempo"].includes(plan[future].type)){
+         state.adjustmentsByIndex[future]=Math.max(Number(state.adjustmentsByIndex[future]||0),5);
+         break;
+       }
+     }
+   }
+   if(splitRows.length){
+     const faster=splitRows.filter(r=>r.delta < -10).length, slower=splitRows.filter(r=>r.delta > 10).length;
+     adjustNote+=` Splits: ${faster} km más rápidos y ${slower} km más lentos que el objetivo.`;
+   }
+ }
+ currentLog.adjustNote=adjustNote;
+ state.logs[currentId]=currentLog;
+ saveState();closeModal();render();
+});
+document.getElementById("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="pace-club-backup.json";a.click();URL.revokeObjectURL(a.href)};
+document.getElementById("importBtn").onclick=()=>document.getElementById("importFile").click();
+document.getElementById("importFile").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.logs||!d.adjustments)throw Error();state=d;saveState();render();alert("Copia importada correctamente.")}catch(err){alert("El archivo no parece una copia válida de PACE CLUB.")}};r.readAsText(f)});
+document.getElementById("resetBtn").onclick=()=>{if(confirm("¿Seguro que quieres borrar los resultados y ajustes de este dispositivo? Exporta una copia antes si quieres conservarlos.")){state={logs:{},adjustments:{},adjustmentsByIndex:{}};saveState();render()}};
+render();
+</script>
+</body>
+</html>
